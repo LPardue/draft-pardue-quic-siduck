@@ -1,0 +1,524 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head profile="http://www.w3.org/2006/03/hcard http://dublincore.org/documents/2008/08/04/dc-html/">
+  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
+
+  <title>Simple Datagram Usability and Connectivity Kata</title>
+
+  
+<style type="text/css">/*<![CDATA[*/
+
+body {
+  font: 16px "Helvetica Neue","Open Sans",Helvetica,Calibri,sans-serif;
+  color: #333;
+  font-size-adjust: 0.5;
+  line-height: 24px;
+  margin: 75px auto;
+  max-width: 624px;
+  padding: 0 5px;
+}
+
+.title, .filename, h1, h2, h3, h4, h5 {
+  font: 16px "Roboto Condensed","Helvetica Neue","Open Sans",Helvetica,Calibri,sans-serif;
+  font-size-adjust: 0.5;
+  font-weight: bold;
+  color: #333;
+  line-height: 100%;
+  margin: 1.2em 0 0.3em;
+}
+.title, #rfc\.title h1 { font-size: 32px; }
+h1, section h1, h2, section h2, section h3, nav h2 { font-size: 20px; }
+h3, section h4, h4, section h5 { font-size: 16px; }
+h1 a[href], h2 a[href], h3 a[href], h4 a[href] {
+  color: #333;
+}
+
+table {
+  margin-left: 0em;
+  border-collapse: collapse;
+}
+th {
+  text-align: left;
+  border-bottom: 2px solid #ddd;
+}
+td {
+  border-top: 1px solid #ddd;
+  vertical-align: top;
+}
+tr:nth-child(2n+1) > td,
+tr:nth-child(2n+1) > th {
+  background-color: #f9f9f9;
+}
+td.reference {
+  max-width: 200px;
+  border-top: none;
+  padding-right: 1em;
+}
+.right {
+  text-align: right;
+}
+
+
+table.header, table#rfc\.headerblock {
+  width: 100%;
+}
+table.header td, table#rfc\.headerblock td {
+  border: none;
+  background-color: transparent;
+  color: black;
+  padding: 0;
+}
+.filename {
+  display: block;
+  color: rgb(119, 119, 119);
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 100%;
+  margin: 10px 0 32px;
+}
+#rfc\.abstract+p, #rfc\.abstract+p code, #rfc\.abstract+p samp, #rfc\.abstract+p tt {
+  font-size: 20px;
+  line-height: 28px;
+}
+
+samp, tt, code, pre, span.tt {
+  font-size: 13.5px;
+  font-family: Consolas, monospace;
+  font-size-adjust: none;
+}
+pre {
+  background-color: #eee;
+  border: 1px solid #ddd;
+  overflow-x: auto;
+  padding: 5px;
+  margin: 5px;
+}
+.figure, caption {
+  font-style: italic;
+  margin: 0 1.5em;
+  text-align: left;
+}
+
+address {
+  margin: 16px 2px;
+  line-height: 20px;
+}
+.vcard {
+  font-style: normal;
+}
+.vcardline {
+  display: block;
+}
+.vcardline .fn, address b {
+  font-weight: normal;
+}
+.vcardline .hidden {
+  display: none;
+}
+
+dl {
+  margin-left: 1em;
+}
+dl.dl-horizontal: {
+  margin-left: 0;
+}
+dl > dt {
+  float: left;
+  margin-right: 1em;
+}
+dl.nohang > dt {
+  float: none;
+}
+dl > dd {
+  margin-bottom: .5em;
+}
+dl.compact > dd {
+  margin-bottom: 0em;
+}
+dl > dd > dl {
+  margin-top: 0.5em;
+  margin-bottom: 0em;
+}
+ul.empty {
+  list-style-type: none;
+}
+ul.empty li {
+  margin-top: .5em;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #eee;
+}
+hr.noprint {
+  display: none;
+}
+
+a {
+  text-decoration: none;
+}
+a[href] {
+  color: #2a6496;
+}
+a[href]:hover {
+  background-color: #eee;
+}
+
+p, ol, ul, li {
+  padding: 0;
+}
+p {
+  margin: 0.5em 0;
+}
+ol, ul {
+  margin: 0.2em 0 0.2em 2em;
+}
+li {
+  margin: 0.2em 0;
+}
+address {
+  font-style: normal;
+}
+
+ul.toc ul {
+  margin: 0 0 0 2em;
+}
+ul.toc li {
+  list-style: none;
+  margin: 0;
+}
+
+@media screen and (min-width: 924px) {
+  body {
+    padding-right: 350px;
+  }
+  body>ul.toc, body>#rfc\.toc {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    right: calc(50vw - 500px);
+    width: 300px;
+    z-index: 1;
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
+  body>#rfc\.toc {
+    top: 55px;
+  }
+  body>ul.toc {
+    top: 100px;
+  }
+
+  ul.toc {
+    margin: 0 0 0 4px;
+    font-size: 12px;
+    line-height: 20px;
+  }
+  ul.toc ul {
+    margin-left: 1.2em;
+  }
+}
+
+.github-fork-ribbon-wrapper {
+  display: none;
+}
+@media screen and (min-width: 800px) {
+  /* "Fork me on GitHub" CSS ribbon based on
+   * https://github.com/simonwhitaker/github-fork-ribbon-css
+   */
+  .github-fork-ribbon {
+    position: absolute;
+    padding: 2px 0;
+    background-color: #a00;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
+    font: 700 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+    pointer-events: auto;
+
+    top: 38px;
+    right: -45px;
+
+    transform: rotate(45deg);
+  }
+
+  .github-fork-ribbon a[href],
+  .github-fork-ribbon a[href]:hover {
+    color: #fff;
+    background-color: transparent;
+    text-decoration: none;
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.5);
+    text-align: center;
+
+    width: 190px;
+    line-height: 18px;
+
+    display: inline-block;
+    padding: 2px 0;
+
+    border: 1.5px dotted #fff;
+    border-color: rgba(255, 255, 255, 0.6);
+  }
+
+  .github-fork-ribbon-wrapper {
+    display: block;
+    width: 130px;
+    height: 130px;
+    position: absolute;
+    overflow: hidden;
+    top: 0; right: 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .github-fork-ribbon-wrapper {
+    position: fixed;
+  }
+  /*]]>*/</style>
+  <meta name="viewport" content="initial-scale=1.0">
+
+
+  <link href="#rfc.toc" rel="Contents">
+<link href="#rfc.section.1" rel="Chapter" title="1 Introduction">
+<link href="#rfc.section.1.1" rel="Chapter" title="1.1 Notational Conventions">
+<link href="#rfc.section.2" rel="Chapter" title="2 Negotiating SiDUCK">
+<link href="#rfc.section.3" rel="Chapter" title="3 Protocol Behaviour">
+<link href="#rfc.section.4" rel="Chapter" title="4 The SIDUCK_ONLY_QUACKS_ECHO error code">
+<link href="#rfc.section.5" rel="Chapter" title="5 Known Issues / Problems">
+<link href="#rfc.section.6" rel="Chapter" title="6 Security Considerations">
+<link href="#rfc.section.7" rel="Chapter" title="7 IANA Considerations">
+<link href="#rfc.references" rel="Chapter" title="8 References">
+<link href="#rfc.references.1" rel="Chapter" title="8.1 Normative References">
+<link href="#rfc.references.2" rel="Chapter" title="8.2 Informative References">
+<link href="#rfc.appendix.A" rel="Chapter" title="A Acknowledgements">
+<link href="#rfc.authors" rel="Chapter">
+
+
+  <meta name="generator" content="xml2rfc version 2.22.3 - https://tools.ietf.org/tools/xml2rfc" />
+  <link rel="schema.dct" href="http://purl.org/dc/terms/" />
+
+  <meta name="dct.creator" content="Pardue, L." />
+  <meta name="dct.identifier" content="urn:ietf:id:draft-pardue-quic-siduck-latest" />
+  <meta name="dct.issued" scheme="ISO8601" content="2019-11-18" />
+  <meta name="dct.abstract" content="This document describes a simple application protocol for testing implementations of the QUIC DATAGRAM frame names. SiDUCK (Simple Datagram Usability and Connectivity Kata) defines a new ALPN ID, &#8220;siduck-00&#8221;, along with a basic offer and acknowledgement interaction using datagram payload data." />
+  <meta name="description" content="This document describes a simple application protocol for testing implementations of the QUIC DATAGRAM frame names. SiDUCK (Simple Datagram Usability and Connectivity Kata) defines a new ALPN ID, &#8220;siduck-00&#8221;, along with a basic offer and acknowledgement interaction using datagram payload data." />
+
+</head>
+
+<body>
+
+  <table class="header">
+    <tbody>
+    
+    	<tr>
+<td class="left">QUIC</td>
+<td class="right">L. Pardue</td>
+</tr>
+<tr>
+<td class="left">Internet-Draft</td>
+<td class="right">November 18, 2019</td>
+</tr>
+<tr>
+<td class="left">Intended status: Experimental</td>
+<td class="right"></td>
+</tr>
+<tr>
+<td class="left">Expires: May 21, 2020</td>
+<td class="right"></td>
+</tr>
+
+    	
+    </tbody>
+  </table>
+
+  <p class="title">Simple Datagram Usability and Connectivity Kata<br />
+  <span class="filename">draft-pardue-quic-siduck-latest</span></p>
+  
+  <h1 id="rfc.abstract"><a href="#rfc.abstract">Abstract</a></h1>
+<p>This document describes a simple application protocol for testing implementations of the QUIC DATAGRAM frame names. SiDUCK (Simple Datagram Usability and Connectivity Kata) defines a new ALPN ID, &#8220;siduck-00&#8221;, along with a basic offer and acknowledgement interaction using datagram payload data.</p>
+<h1><a>Note to Readers</a></h1>
+<p>Discussion of this document takes place on the QUIC Working Group mailing list (quic@ietf.org), which is archived at <a href="https://mailarchive.ietf.org/arch/browse/quic/">https://mailarchive.ietf.org/arch/browse/quic/</a>.</p>
+<p>Source for this draft and an issue tracker can be found at <a href="https://github.com/lpardue/draft-pardue-quic-siduck">https://github.com/lpardue/draft-pardue-quic-siduck</a>.</p>
+<h1 id="rfc.status"><a href="#rfc.status">Status of This Memo</a></h1>
+<p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
+<p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
+<p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
+<p>This Internet-Draft will expire on May 21, 2020.</p>
+<h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
+<p>Copyright (c) 2019 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
+<p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
+
+  
+  <hr class="noprint" />
+  <h1 class="np" id="rfc.toc"><a href="#rfc.toc">Table of Contents</a></h1>
+  <ul class="toc">
+
+  	<li>1.   <a href="#rfc.section.1">Introduction</a>
+</li>
+<ul><li>1.1.   <a href="#rfc.section.1.1">Notational Conventions</a>
+</li>
+</ul><li>2.   <a href="#rfc.section.2">Negotiating SiDUCK</a>
+</li>
+<li>3.   <a href="#rfc.section.3">Protocol Behaviour</a>
+</li>
+<li>4.   <a href="#rfc.section.4">The SIDUCK_ONLY_QUACKS_ECHO error code</a>
+</li>
+<li>5.   <a href="#rfc.section.5">Known Issues / Problems</a>
+</li>
+<li>6.   <a href="#rfc.section.6">Security Considerations</a>
+</li>
+<li>7.   <a href="#rfc.section.7">IANA Considerations</a>
+</li>
+<li>8.   <a href="#rfc.references">References</a>
+</li>
+<ul><li>8.1.   <a href="#rfc.references.1">Normative References</a>
+</li>
+<li>8.2.   <a href="#rfc.references.2">Informative References</a>
+</li>
+</ul><li>Appendix A.   <a href="#rfc.appendix.A">Acknowledgements</a>
+</li>
+<li><a href="#rfc.authors">Author's Address</a>
+</li>
+
+
+  </ul>
+
+  <h1 id="rfc.section.1">
+<a href="#rfc.section.1">1.</a> <a href="#introduction" id="introduction">Introduction</a>
+</h1>
+<p id="rfc.section.1.p.1">The DATAGRAM frame <a href="#I-D.pauly-quic-datagram" class="xref">[I-D.pauly-quic-datagram]</a> for QUIC <a href="#I-D.ietf-quic-transport" class="xref">[I-D.ietf-quic-transport]</a> is an extension for the unreliable delivery of datagrams. Applications using DATAGRAM negotiate it using Transport Parameters but the application-specific contents are left for a higher-level mechanism.</p>
+<p id="rfc.section.1.p.2">HTTP/3 DATAGRAM <a href="#I-D.schinazi-quic-h3-datagram" class="xref">[I-D.schinazi-quic-h3-datagram]</a> defines the usage of QUIC DATAGRAM frames when the application protocol running over QUIC is HTTP/3 <a href="#I-D.ietf-quic-http" class="xref">[I-D.ietf-quic-http]</a>, which is negotiated using ALPN <a href="#RFC7301" class="xref">[RFC7301]</a> with an identifier such as &#8220;h3-24&#8221;. The HTTP/3 DATAGRAM frame is transmitted as the QUIC DATAGRAM frame Datagram Data field. It contains a flow identifier field that can be used for demultiplexing applications, and an HTTP/3 Datagram Payload field whose semantics are defined by individual applications.</p>
+<p id="rfc.section.1.p.3">Since the QUIC DATAGRAM and HTTP/3 DATAGRAM specifications leave the semantic higher-order behaviour undefined, it is difficult to prove the interoperability of implementations. This document defines SiDUCK (Simple Datagram Usability and Connectivity Kata), a new application that maps directly to QUIC DATAGRAM and uses the Datagram Data field directly to support a simple client-server echo service.</p>
+<p id="rfc.section.1.p.4">Using QUIC DATAGRAM directly provides the benefit of avoiding complexity of HTTP/3 session establishment and flow identifier allocation and demultiplxing.  SiDUCK&#8217;s simpler application semantics allow implementers to exercise the interoperability of foundational layers of DATAGRAM, building progressive assurance that benefits the design and robustness of other DATAGRAM-using applications.</p>
+<h1 id="rfc.section.1.1">
+<a href="#rfc.section.1.1">1.1.</a> <a href="#notational-conventions" id="notational-conventions">Notational Conventions</a>
+</h1>
+<p id="rfc.section.1.1.p.1">The key words &#8220;MUST&#8221;, &#8220;MUST NOT&#8221;, &#8220;REQUIRED&#8221;, &#8220;SHALL&#8221;, &#8220;SHALL NOT&#8221;, &#8220;SHOULD&#8221;, &#8220;SHOULD NOT&#8221;, &#8220;RECOMMENDED&#8221;, &#8220;MAY&#8221;, and &#8220;OPTIONAL&#8221; in this document are to be interpreted as described in <a href="#RFC2119" class="xref">[RFC2119]</a>.</p>
+<p id="rfc.section.1.1.p.2">The terms sh-token and sh-boolean are imported from <a href="#STRUCTURED-HEADERS" class="xref">[STRUCTURED-HEADERS]</a>.</p>
+<p id="rfc.section.1.1.p.3">Example HTTP requests and responses use the HTTP/2-style formatting from <a href="#RFC7540" class="xref">[RFC7540]</a>.</p>
+<p id="rfc.section.1.1.p.4">This document uses the variable-length integer encoding from <a href="#I-D.ietf-quic-transport" class="xref">[I-D.ietf-quic-transport]</a>.</p>
+<h1 id="rfc.section.2">
+<a href="#rfc.section.2">2.</a> <a href="#negotiating-siduck" id="negotiating-siduck">Negotiating SiDUCK</a>
+</h1>
+<p id="rfc.section.2.p.1">SiDUCK is an application protocol that runs atop QUIC. The token &#8220;siduck&#8221; is used to identify SiDUCK in ALPN, used during QUIC connection establishment. Only implementations of the final, published RFC can identify themselves as &#8220;siduck&#8221;. Until such an RFC exists, implementations MUST NOT identify themselves using this string.</p>
+<p></p>
+
+<ul class="empty"><li>
+<strong>RFC Editor&#8217;s Note:</strong>  Please remove the following prior to publication of a final version of this document.</li></ul>
+<p id="rfc.section.2.p.3">Implementations of draft versions of the protocol MUST add the string &#8220;-&#8220; and the corresponding draft number to the identifier. For example, draft-pardue-quic-siduck-00 is identified using the string &#8220;siduck-00&#8221;.</p>
+<p id="rfc.section.2.p.4">Non-compatible experiments that are based on these draft versions MUST append the string &#8220;-&#8220; and an experiment name to the identifier. For example, an experimental implementation based on draft-pardue-quic-siduck-09 which extends the permitted message types to include &#8220;honk&#8221; might identify itself as &#8220;siduck-09-goose&#8221;. Note that any label MUST conform to the &#8220;token&#8221; syntax defined in Section 3.2.6 of <a href="#RFC7230" class="xref">[RFC7230]</a>.</p>
+<h1 id="rfc.section.3">
+<a href="#rfc.section.3">3.</a> <a href="#protocol-behaviour" id="protocol-behaviour">Protocol Behaviour</a>
+</h1>
+<p id="rfc.section.3.p.1">A SiDUCK session consists of a client and server. Once a SiDUCK session is established, the client SHOULD send a QUIC DATAGRAM frame with the Datagram Data field containing &#8220;quack&#8221;. A server that receives a quack, MUST respond with a QUIC DATAGRAM frame with the Datagram Data field containing &#8220;quack-ack&#8221;.</p>
+<p id="rfc.section.3.p.2">A client MUST NOT send any other message than &#8220;quack&#8221;. A server that receives a non-quack message MUST close the connection with an error of type SIDUCK_ONLY_QUACKS_ECHO.</p>
+<h1 id="rfc.section.4">
+<a href="#rfc.section.4">4.</a> <a href="#the-siduckonlyquacksecho-error-code" id="the-siduckonlyquacksecho-error-code">The SIDUCK_ONLY_QUACKS_ECHO error code</a>
+</h1>
+<p id="rfc.section.4.p.1">This document defines the SIDUCK_ONLY_QUACKS_ECHO QUIC Application error code. It has the value 0x101.</p>
+<h1 id="rfc.section.5">
+<a href="#rfc.section.5">5.</a> <a href="#known-issues-problems" id="known-issues-problems">Known Issues / Problems</a>
+</h1>
+<p></p>
+
+<ul>
+<li>The design does not permit large DATAGRAM frames. Sending these in a simple application protocol would be beneficial and within the scope of SiDUCK&#8217;s goals.</li>
+<li>The design does not specify requirements on Transport Parameters. For example, since streams are not used, the spec could require that endpoints send max_streams_{bidi|uni} with the value 0.</li>
+</ul>
+<h1 id="rfc.section.6">
+<a href="#rfc.section.6">6.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a>
+</h1>
+<p id="rfc.section.6.p.1">There are not beleived to be any further security considerations beyond those presented in <a href="#I-D.ietf-quic-transport" class="xref">[I-D.ietf-quic-transport]</a>.</p>
+<h1 id="rfc.section.7">
+<a href="#rfc.section.7">7.</a> <a href="#iana-considerations" id="iana-considerations">IANA Considerations</a>
+</h1>
+<p id="rfc.section.7.p.1">TBD</p>
+<h1 id="rfc.references">
+<a href="#rfc.references">8.</a> References</h1>
+<h1 id="rfc.references.1">
+<a href="#rfc.references.1">8.1.</a> Normative References</h1>
+<table><tbody>
+<tr>
+<td class="reference"><b id="I-D.ietf-quic-transport">[I-D.ietf-quic-transport]</b></td>
+<td class="top">
+<a>Iyengar, J.</a> and <a>M. Thomson</a>, "<a href="https://tools.ietf.org/html/draft-ietf-quic-transport-23">QUIC: A UDP-Based Multiplexed and Secure Transport</a>", Internet-Draft draft-ietf-quic-transport-23, September 2019.</td>
+</tr>
+<tr>
+<td class="reference"><b id="I-D.pauly-quic-datagram">[I-D.pauly-quic-datagram]</b></td>
+<td class="top">
+<a>Pauly, T.</a>, <a>Kinnear, E.</a> and <a>D. Schinazi</a>, "<a href="https://tools.ietf.org/html/draft-pauly-quic-datagram-04">An Unreliable Datagram Extension to QUIC</a>", Internet-Draft draft-pauly-quic-datagram-04, October 2019.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC2119">[RFC2119]</b></td>
+<td class="top">
+<a>Bradner, S.</a>, "<a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC7230">[RFC7230]</b></td>
+<td class="top">
+<a>Fielding, R.</a> and <a>J. Reschke</a>, "<a href="https://tools.ietf.org/html/rfc7230">Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing</a>", RFC 7230, DOI 10.17487/RFC7230, June 2014.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC7301">[RFC7301]</b></td>
+<td class="top">
+<a>Friedl, S.</a>, <a>Popov, A.</a>, <a>Langley, A.</a> and <a>E. Stephan</a>, "<a href="https://tools.ietf.org/html/rfc7301">Transport Layer Security (TLS) Application-Layer Protocol Negotiation Extension</a>", RFC 7301, DOI 10.17487/RFC7301, July 2014.</td>
+</tr>
+<tr>
+<td class="reference"><b id="STRUCTURED-HEADERS">[STRUCTURED-HEADERS]</b></td>
+<td class="top">
+<a>Nottingham, M.</a> and <a>P. Kamp</a>, "<a href="https://tools.ietf.org/html/draft-ietf-httpbis-header-structure-14">Structured Headers for HTTP</a>", Internet-Draft draft-ietf-httpbis-header-structure-14, October 2019.</td>
+</tr>
+</tbody></table>
+<h1 id="rfc.references.2">
+<a href="#rfc.references.2">8.2.</a> Informative References</h1>
+<table><tbody>
+<tr>
+<td class="reference"><b id="I-D.ietf-quic-http">[I-D.ietf-quic-http]</b></td>
+<td class="top">
+<a>Bishop, M.</a>, "<a href="https://tools.ietf.org/html/draft-ietf-quic-http-23">Hypertext Transfer Protocol Version 3 (HTTP/3)</a>", Internet-Draft draft-ietf-quic-http-23, September 2019.</td>
+</tr>
+<tr>
+<td class="reference"><b id="I-D.schinazi-quic-h3-datagram">[I-D.schinazi-quic-h3-datagram]</b></td>
+<td class="top">
+<a>Schinazi, D.</a>, "<a href="https://tools.ietf.org/html/draft-schinazi-quic-h3-datagram-01">Using QUIC Datagrams with HTTP/3</a>", Internet-Draft draft-schinazi-quic-h3-datagram-01, October 2019.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC7540">[RFC7540]</b></td>
+<td class="top">
+<a>Belshe, M.</a>, <a>Peon, R.</a> and <a>M. Thomson</a>, "<a href="https://tools.ietf.org/html/rfc7540">Hypertext Transfer Protocol Version 2 (HTTP/2)</a>", RFC 7540, DOI 10.17487/RFC7540, May 2015.</td>
+</tr>
+</tbody></table>
+<h1 id="rfc.appendix.A">
+<a href="#rfc.appendix.A">Appendix A.</a> <a href="#acknowledgements" id="acknowledgements">Acknowledgements</a>
+</h1>
+<p id="rfc.section.A.p.1">Thanks to Andy Stitzer who achieved interop of an unpublished early SiDUCK specification during the IETF 106 Hackathon.</p>
+<h1 id="rfc.authors"><a href="#rfc.authors">Author's Address</a></h1>
+<div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Lucas Pardue</span> 
+	  <span class="n hidden">
+		<span class="family-name">Pardue</span>
+	  </span>
+	</span>
+	<span class="org vcardline"></span>
+	<span class="adr">
+	  
+	  <span class="vcardline">
+		<span class="locality"></span> 
+		<span class="region"></span>
+		<span class="code"></span>
+	  </span>
+	  <span class="country-name vcardline"></span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:lucaspardue.24.7@gmail.com">lucaspardue.24.7@gmail.com</a></span>
+
+  </address>
+</div>
+
+</body>
+</html>
+
