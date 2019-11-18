@@ -2,7 +2,7 @@
 title: Simple Datagram Usability and Connectivity Kata
 abbrev: SiDUCK
 docname: draft-pardue-quic-siduck-latest
-category: experimental
+category: exp
 
 ipr: trust200902
 area: Transport
@@ -25,9 +25,9 @@ informative:
 --- abstract
 
 This document describes a simple application protocol for testing
-implementations of the QUIC DATAGRAM frame names. SiDUCK (Simple Datagram
-Usability and Connectivity Kata) defines a new ALPN ID, "siduck-00", along with
-a basic offer and acknowledgement interaction using datagram payload data.
+implementations of the QUIC DATAGRAM frame. SiDUCK (Simple Datagram Usability
+and Connectivity Kata) defines a new ALPN ID, "siduck-00", along with a basic
+offer and acknowledgement interaction using datagram payload data.
 
 --- middle
 
@@ -40,7 +40,7 @@ but the application-specific contents are left for a higher-level mechanism.
 
 HTTP/3 DATAGRAM {{?I-D.schinazi-quic-h3-datagram}} defines the usage of QUIC
 DATAGRAM frames when the application protocol running over QUIC is HTTP/3
-{{?I-D.ietf-quic-http}}, which is negotiated using ALPN {{RFC7301}} with an
+{{?I-D.ietf-quic-http}}, which is negotiated using ALPN {{!RFC7301}} with an
 identifier such as "h3-24". The HTTP/3 DATAGRAM frame is transmitted as the QUIC
 DATAGRAM frame Datagram Data field. It contains a flow identifier field that can
 be used for demultiplexing applications, and an HTTP/3 Datagram Payload field
@@ -120,7 +120,7 @@ This document defines the SIDUCK_ONLY_QUACKS_ECHO QUIC Application error code. I
 
 # Security Considerations
 
-There are not beleived to be any further security considerations beyond those
+There are not believed to be any further security considerations beyond those
 presented in {{!I-D.ietf-quic-transport}}.
 
 # IANA Considerations
