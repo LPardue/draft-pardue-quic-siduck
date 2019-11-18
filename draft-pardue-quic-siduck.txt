@@ -14,10 +14,10 @@ Expires: May 21, 2020
 Abstract
 
    This document describes a simple application protocol for testing
-   implementations of the QUIC DATAGRAM frame names.  SiDUCK (Simple
-   Datagram Usability and Connectivity Kata) defines a new ALPN ID,
-   "siduck-00", along with a basic offer and acknowledgement interaction
-   using datagram payload data.
+   implementations of the QUIC DATAGRAM frame.  SiDUCK (Simple Datagram
+   Usability and Connectivity Kata) defines a new ALPN ID, "siduck-00",
+   along with a basic offer and acknowledgement interaction using
+   datagram payload data.
 
 Note to Readers
 
@@ -202,7 +202,7 @@ Internet-Draft                   SiDUCK                    November 2019
 
 6.  Security Considerations
 
-   There are not beleived to be any further security considerations
+   There are not believed to be any further security considerations
    beyond those presented in [I-D.ietf-quic-transport].
 
 7.  IANA Considerations
